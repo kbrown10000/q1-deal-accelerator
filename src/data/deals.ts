@@ -500,6 +500,41 @@ export const actions: Action[] = [
   }
 ];
 
+// Alias for backwards compatibility
+export const actionItems = actions;
+
+// Type exports
+export type Region = 'west' | 'east' | 'europe';
+
+// Helper functions
+export function getDealById(id: string): Deal | undefined {
+  return deals.find(d => d.id === id);
+}
+
+export function getDealsByRegion(region: Region): Deal[] {
+  return deals.filter(d => d.region === region);
+}
+
+export function getRegionMetrics(region: Region) {
+  const regionDeals = getDealsByRegion(region);
+  return {
+    dealCount: regionDeals.length,
+    totalAmount: regionDeals.reduce((sum, d) => sum + d.amount, 0),
+    totalEgp: regionDeals.reduce((sum, d) => sum + d.egp, 0),
+    avgDealSize: regionDeals.length > 0 
+      ? regionDeals.reduce((sum, d) => sum + d.amount, 0) / regionDeals.length 
+      : 0,
+    avgDaysOpen: regionDeals.length > 0
+      ? regionDeals.reduce((sum, d) => sum + (d.daysOpen || 0), 0) / regionDeals.length
+      : 0,
+    byStage: {
+      stage1: regionDeals.filter(d => d.stage === 1).length,
+      stage2: regionDeals.filter(d => d.stage === 2).length,
+      stage3: regionDeals.filter(d => d.stage === 3).length,
+    }
+  };
+}
+
 // Summary stats
 export const pipelineSummary = {
   totalDeals: deals.length,
