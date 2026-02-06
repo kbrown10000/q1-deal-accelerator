@@ -178,6 +178,48 @@ const neglectedAccounts = [
   },
 ];
 
+// Scott's Performance vs Peers (from Sales MCP - Feb 2026)
+const peerComparison = {
+  scott: {
+    name: 'Scott Pallardy',
+    totalOpps: 7,
+    totalAmount: 373350,
+    totalEGP: 229378,
+    openDeals: 6,
+    pipeline: 283350,
+    pipelineEGP: 188878,
+    closedWon: 90000, // total - pipeline
+    rank: 10,
+    totalPeers: 13,
+    margin: 61, // EGP/Amount %
+  },
+  peers: [
+    { name: 'Avani Macwan', totalOpps: 23, totalAmount: 1942183, pipeline: 737995, rank: 1, region: 'East' },
+    { name: 'Mike Campbell', totalOpps: 24, totalAmount: 1893948, pipeline: 1566618, rank: 2, region: 'West' },
+    { name: 'Lisa Burgese Fry', totalOpps: 15, totalAmount: 1282659, pipeline: 1082659, rank: 3, region: 'East' },
+    { name: 'Josh Ertmer', totalOpps: 10, totalAmount: 1215601, pipeline: 965601, rank: 4, region: 'East' },
+    { name: 'Sherry De Luca', totalOpps: 11, totalAmount: 980000, pipeline: 650000, rank: 5, region: 'East' },
+    { name: 'Jim Macdonell', totalOpps: 11, totalAmount: 779392, pipeline: 639500, rank: 7, region: 'East' },
+    { name: 'Marcus Dinan', totalOpps: 9, totalAmount: 684405, pipeline: 77805, rank: 8, region: 'Europe' },
+    { name: 'Justin Ott', totalOpps: 11, totalAmount: 556550, pipeline: 356550, rank: 9, region: 'West' },
+  ],
+  companyTotals: {
+    totalOwners: 13,
+    totalOpps: 128,
+    totalAmount: 11371089,
+    avgAmountPerOwner: 874699,
+    totalPipeline: 7123079,
+    avgPipelinePerOwner: 548006,
+  },
+  insights: [
+    'Scott ranks 10th of 13 active AMs by total opportunity value',
+    'Lowest opportunity count (7) among active sales team',
+    'HIGH margin seller - 61% EGP vs ~40% company average',
+    'Pipeline ($283K) is 48% below peer average ($548K)',
+    'Strength: Quality over quantity - smaller book, higher margins',
+  ],
+};
+
 // Relationship Risk Matrix - Extracted from Gong
 const relationshipRisk = [
   {
@@ -912,6 +954,110 @@ export default function ScottTransitionPage() {
               <div className="text-lg font-semibold text-orange-900">
                 Total At-Risk Revenue: {formatCurrency(dormantAccounts.reduce((s, a) => s + a.revenue2024, 0))}
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Historical Performance vs Peers */}
+        <div className="bg-white rounded-xl shadow-sm border mb-8">
+          <div className="p-6 border-b bg-slate-50">
+            <h2 className="text-xl font-semibold text-slate-900 flex items-center gap-2">
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
+              📊 Historical Performance vs Peers (Sales MCP)
+            </h2>
+            <p className="text-sm text-slate-600 mt-1">Scott&apos;s performance compared to other Account Managers</p>
+          </div>
+          
+          {/* Scott's Summary Card */}
+          <div className="p-6 bg-gradient-to-r from-slate-100 to-slate-50">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+              <div className="bg-white rounded-lg p-4 shadow-sm border text-center">
+                <div className="text-3xl font-bold text-slate-800">{peerComparison.scott.rank}<span className="text-lg text-slate-400">/{peerComparison.scott.totalPeers}</span></div>
+                <div className="text-sm text-slate-600">Rank by Revenue</div>
+              </div>
+              <div className="bg-white rounded-lg p-4 shadow-sm border text-center">
+                <div className="text-3xl font-bold text-slate-800">{peerComparison.scott.totalOpps}</div>
+                <div className="text-sm text-slate-600">Total Opps</div>
+                <div className="text-xs text-red-500">Lowest on team</div>
+              </div>
+              <div className="bg-white rounded-lg p-4 shadow-sm border text-center">
+                <div className="text-3xl font-bold text-slate-800">${(peerComparison.scott.totalAmount / 1000).toFixed(0)}K</div>
+                <div className="text-sm text-slate-600">Total Value</div>
+              </div>
+              <div className="bg-white rounded-lg p-4 shadow-sm border text-center">
+                <div className="text-3xl font-bold text-slate-800">${(peerComparison.scott.pipeline / 1000).toFixed(0)}K</div>
+                <div className="text-sm text-slate-600">Pipeline</div>
+              </div>
+              <div className="bg-white rounded-lg p-4 shadow-sm border text-center">
+                <div className="text-3xl font-bold text-green-600">{peerComparison.scott.margin}%</div>
+                <div className="text-sm text-slate-600">EGP Margin</div>
+                <div className="text-xs text-green-500">Above avg!</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Peer Comparison Table */}
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead className="bg-slate-100">
+                <tr>
+                  <th className="text-left py-3 px-4 font-semibold text-slate-700">Rank</th>
+                  <th className="text-left py-3 px-4 font-semibold text-slate-700">Account Manager</th>
+                  <th className="text-left py-3 px-4 font-semibold text-slate-700">Region</th>
+                  <th className="text-right py-3 px-4 font-semibold text-slate-700">Opps</th>
+                  <th className="text-right py-3 px-4 font-semibold text-slate-700">Total Value</th>
+                  <th className="text-right py-3 px-4 font-semibold text-slate-700">Pipeline</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y">
+                {peerComparison.peers.map((peer, idx) => (
+                  <tr key={idx} className="hover:bg-slate-50">
+                    <td className="py-3 px-4">
+                      <span className={`inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold ${
+                        peer.rank <= 3 ? 'bg-green-200 text-green-800' : 'bg-slate-200 text-slate-600'
+                      }`}>{peer.rank}</span>
+                    </td>
+                    <td className="py-3 px-4 font-medium text-slate-900">{peer.name}</td>
+                    <td className="py-3 px-4 text-slate-600">{peer.region}</td>
+                    <td className="py-3 px-4 text-right">{peer.totalOpps}</td>
+                    <td className="py-3 px-4 text-right font-medium">${(peer.totalAmount / 1000000).toFixed(2)}M</td>
+                    <td className="py-3 px-4 text-right">${(peer.pipeline / 1000).toFixed(0)}K</td>
+                  </tr>
+                ))}
+                {/* Scott's row highlighted */}
+                <tr className="bg-amber-50 border-2 border-amber-300">
+                  <td className="py-3 px-4">
+                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold bg-amber-400 text-amber-900">10</span>
+                  </td>
+                  <td className="py-3 px-4 font-bold text-amber-900">Scott Pallardy ⬅️</td>
+                  <td className="py-3 px-4 text-amber-700">East</td>
+                  <td className="py-3 px-4 text-right text-amber-700">{peerComparison.scott.totalOpps}</td>
+                  <td className="py-3 px-4 text-right font-bold text-amber-900">${(peerComparison.scott.totalAmount / 1000).toFixed(0)}K</td>
+                  <td className="py-3 px-4 text-right text-amber-700">${(peerComparison.scott.pipeline / 1000).toFixed(0)}K</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          {/* Performance Insights */}
+          <div className="p-6 border-t bg-slate-50">
+            <h3 className="font-semibold text-slate-800 mb-3">📈 Performance Insights</h3>
+            <ul className="space-y-2">
+              {peerComparison.insights.map((insight, i) => (
+                <li key={i} className="flex items-start gap-2 text-sm">
+                  <span className={`mt-1 ${insight.includes('Strength') ? 'text-green-500' : insight.includes('below') || insight.includes('Lowest') ? 'text-amber-500' : 'text-slate-400'}`}>
+                    {insight.includes('Strength') ? '✓' : insight.includes('below') || insight.includes('Lowest') ? '⚠' : '•'}
+                  </span>
+                  <span className="text-slate-700">{insight}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-4 p-4 bg-amber-100 rounded-lg border border-amber-300">
+              <p className="text-amber-800 text-sm">
+                <strong>🎯 Key Takeaway:</strong> Scott has the smallest book on the team but maintains excellent margins. 
+                The new AM should focus on <em>volume growth</em> while maintaining Scott&apos;s high-margin approach. 
+                Priority: Re-engage the $6.3M in dormant accounts to rebuild pipeline quickly.
+              </p>
             </div>
           </div>
         </div>
