@@ -7,11 +7,19 @@ import {
   LayoutDashboard, 
   Globe, 
   ListChecks, 
-  Target 
+  Target,
+  Building2,
+  Users,
+  UserCircle,
+  Clock
 } from "lucide-react"
 
 const navItems = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/accounts", label: "Accounts", icon: Building2 },
+  { href: "/owners", label: "Owners", icon: UserCircle },
+  { href: "/team", label: "Team", icon: Users },
+  { href: "/velocity", label: "Velocity", icon: Clock },
   { href: "/region/west", label: "West", icon: Globe },
   { href: "/region/east", label: "East", icon: Globe },
   { href: "/region/europe", label: "Europe", icon: Globe },
@@ -27,7 +35,7 @@ export function Nav() {
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
             <Target className="h-6 w-6 text-primary" />
-            <span className="text-lg font-bold">Q1 Deal Accelerator</span>
+            <span className="text-lg font-bold">Pipeline Visualizer</span>
           </Link>
           
           <div className="flex items-center gap-1">
