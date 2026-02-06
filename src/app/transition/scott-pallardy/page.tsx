@@ -86,6 +86,130 @@ const scottProfile = {
   ],
 };
 
+// Neglected/Dormant Accounts - CRITICAL FOR NEW AM
+const neglectedAccounts = [
+  { 
+    name: 'Biogen', 
+    revenue2024: 1500000, 
+    pipeline: 0, 
+    lastActivity: 'Unknown',
+    services: 'CSV, Validation',
+    risk: 'critical',
+    action: 'Immediate outreach - major pharma, high value',
+    contacts: 'TBD - Research needed',
+    territory: 'East - MA'
+  },
+  { 
+    name: 'Atara Biotherapeutics', 
+    revenue2024: 1080000, 
+    pipeline: 0, 
+    lastActivity: '2024',
+    services: 'Cell Therapy Validation',
+    risk: 'critical',
+    action: 'Check if still operating - biotech volatility',
+    contacts: 'TBD',
+    territory: 'East'
+  },
+  { 
+    name: 'Shire US Inc (now Takeda)', 
+    revenue2024: 1000000, 
+    pipeline: 0, 
+    lastActivity: '2024',
+    services: 'Enterprise Validation',
+    risk: 'critical',
+    action: 'Coordinate with Takeda team - may have merged',
+    contacts: 'Check Takeda relationships',
+    territory: 'East - MA'
+  },
+  { 
+    name: 'AbbVie', 
+    revenue2024: 744000, 
+    pipeline: 0, 
+    lastActivity: 'Unknown',
+    services: 'Compliance, Validation',
+    risk: 'high',
+    action: 'Major pharma - should have continuous work',
+    contacts: 'TBD',
+    territory: 'East - IL/PR'
+  },
+  { 
+    name: 'Becton Dickinson', 
+    revenue2024: 619000, 
+    pipeline: 0, 
+    lastActivity: 'Unknown',
+    services: 'MedTech Validation',
+    risk: 'high',
+    action: 'Large MedTech - Lisa Fry expertise match',
+    contacts: 'TBD',
+    territory: 'East - NJ'
+  },
+  { 
+    name: 'Autolus, LTD', 
+    revenue2024: 605000, 
+    pipeline: 0, 
+    lastActivity: '2024',
+    services: 'Cell Therapy',
+    risk: 'high',
+    action: 'UK-based, cell therapy - check EU handoff',
+    contacts: 'TBD',
+    territory: 'UK/EU'
+  },
+  { 
+    name: 'Spectranetics Corp', 
+    revenue2024: 396000, 
+    pipeline: 0, 
+    lastActivity: 'Unknown',
+    services: 'Medical Device',
+    risk: 'medium',
+    action: 'Acquired by Philips - verify current status',
+    contacts: 'TBD',
+    territory: 'East'
+  },
+  { 
+    name: 'Santen Incorporated', 
+    revenue2024: 352000, 
+    pipeline: 0, 
+    lastActivity: 'Unknown',
+    services: 'Pharma Validation',
+    risk: 'medium',
+    action: 'Japanese pharma - specialty ophthalmology',
+    contacts: 'TBD',
+    territory: 'East'
+  },
+];
+
+// New AM 90-Day Playbook
+const newAmPlaybook = {
+  week1: [
+    'Review this transition page completely',
+    'Meet with Lisa Burgese Fry for East region context',
+    'Meet with Rathina G. and John for technical handoff',
+    'Call Dallis (Arthrex) - get AI solutions list before parental leave',
+    'Attempt Enable Injections rescue call with Ryan',
+  ],
+  week2: [
+    'Close BioCryst DocuSign ($89K) - Feb 13 deadline',
+    'Close Therakos UDI ($24K) - Feb 13 deadline', 
+    'Schedule intro calls: Biogen, AbbVie, Becton Dickinson',
+    'Review all 34 Stage 1 deals for qualification',
+    'Audit 180+ day aging deals for viability',
+  ],
+  week3_4: [
+    'Close BioAgilytix ($70K) - Feb 28 deadline',
+    'Complete Zimmer Biomet proposal with PTC partnership',
+    'Research dormant accounts - current status, contacts',
+    'Establish weekly cadence with key accounts',
+    'Update CRM with new contact information',
+  ],
+  month2_3: [
+    'Re-engage all dormant accounts with value proposition',
+    'Qualify or close all Stage 1 deals',
+    'Build pipeline to replace 90+ day aging deals',
+    'Establish relationships with internal specialists',
+    'Document account strategies in CRM',
+  ],
+};
+
 // Recommended assignees based on East region reps
 const recommendedAssignees = [
   { name: 'Lisa Burgese Fry', strength: 'Enterprise accounts, MedTech' },
@@ -673,6 +797,162 @@ export default function ScottTransitionPage() {
             <div className="p-4 bg-orange-50 border-t">
               <div className="text-lg font-semibold text-orange-900">
                 Total At-Risk Revenue: {formatCurrency(dormantAccounts.reduce((s, a) => s + a.revenue2024, 0))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Neglected Accounts - CRITICAL */}
+        <div className="bg-white rounded-xl shadow-sm border mb-8">
+          <div className="p-6 border-b bg-red-50">
+            <h2 className="text-xl font-semibold text-red-900 flex items-center gap-2">
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+              ⚠️ Neglected Accounts - $6.3M Revenue at Risk
+            </h2>
+            <p className="text-sm text-red-700 mt-1">Accounts with 2024 revenue but ZERO current pipeline - immediate re-engagement required</p>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead className="bg-red-100">
+                <tr>
+                  <th className="text-left py-3 px-4 font-semibold text-red-900">Account</th>
+                  <th className="text-right py-3 px-4 font-semibold text-red-900">2024 Revenue</th>
+                  <th className="text-left py-3 px-4 font-semibold text-red-900">Services</th>
+                  <th className="text-left py-3 px-4 font-semibold text-red-900">Territory</th>
+                  <th className="text-left py-3 px-4 font-semibold text-red-900">Risk</th>
+                  <th className="text-left py-3 px-4 font-semibold text-red-900">Recommended Action</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y">
+                {neglectedAccounts.map((account, idx) => (
+                  <tr key={idx} className={`hover:bg-red-50 ${account.risk === 'critical' ? 'bg-red-50' : ''}`}>
+                    <td className="py-3 px-4">
+                      <div className="font-medium text-gray-900">{account.name}</div>
+                      <div className="text-xs text-gray-500">Contacts: {account.contacts}</div>
+                    </td>
+                    <td className="py-3 px-4 text-right font-semibold text-red-600">
+                      ${(account.revenue2024 / 1000).toFixed(0)}K
+                    </td>
+                    <td className="py-3 px-4 text-gray-600">{account.services}</td>
+                    <td className="py-3 px-4 text-gray-600">{account.territory}</td>
+                    <td className="py-3 px-4">
+                      <span className={`px-2 py-1 rounded text-xs font-semibold ${
+                        account.risk === 'critical' ? 'bg-red-200 text-red-800' :
+                        account.risk === 'high' ? 'bg-orange-200 text-orange-800' :
+                        'bg-yellow-200 text-yellow-800'
+                      }`}>
+                        {account.risk.toUpperCase()}
+                      </span>
+                    </td>
+                    <td className="py-3 px-4 text-gray-700 text-xs">{account.action}</td>
+                  </tr>
+                ))}
+              </tbody>
+              <tfoot className="bg-red-100">
+                <tr>
+                  <td className="py-3 px-4 font-bold text-red-900">TOTAL AT RISK</td>
+                  <td className="py-3 px-4 text-right font-bold text-red-900">$6.3M</td>
+                  <td colSpan={4} className="py-3 px-4 text-red-700">These accounts generated revenue in 2024 but have no active pipeline</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+
+        {/* New AM 90-Day Playbook */}
+        <div className="bg-white rounded-xl shadow-sm border mb-8">
+          <div className="p-6 border-b bg-emerald-50">
+            <h2 className="text-xl font-semibold text-emerald-900 flex items-center gap-2">
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+              📋 New Account Manager - 90 Day Playbook
+            </h2>
+            <p className="text-sm text-emerald-700 mt-1">Structured onboarding plan for seamless transition</p>
+          </div>
+          <div className="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Week 1 */}
+            <div className="bg-emerald-50 rounded-lg p-4">
+              <h3 className="font-bold text-emerald-900 mb-3 flex items-center gap-2">
+                <span className="bg-emerald-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">1</span>
+                Week 1 - Orientation
+              </h3>
+              <ul className="space-y-2 text-sm">
+                {newAmPlaybook.week1.map((item, i) => (
+                  <li key={i} className="flex gap-2">
+                    <input type="checkbox" className="mt-1 rounded border-emerald-400" />
+                    <span className="text-gray-700">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Week 2 */}
+            <div className="bg-blue-50 rounded-lg p-4">
+              <h3 className="font-bold text-blue-900 mb-3 flex items-center gap-2">
+                <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">2</span>
+                Week 2 - Critical Closes
+              </h3>
+              <ul className="space-y-2 text-sm">
+                {newAmPlaybook.week2.map((item, i) => (
+                  <li key={i} className="flex gap-2">
+                    <input type="checkbox" className="mt-1 rounded border-blue-400" />
+                    <span className="text-gray-700">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Weeks 3-4 */}
+            <div className="bg-purple-50 rounded-lg p-4">
+              <h3 className="font-bold text-purple-900 mb-3 flex items-center gap-2">
+                <span className="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">3</span>
+                Weeks 3-4 - Foundation
+              </h3>
+              <ul className="space-y-2 text-sm">
+                {newAmPlaybook.week3_4.map((item, i) => (
+                  <li key={i} className="flex gap-2">
+                    <input type="checkbox" className="mt-1 rounded border-purple-400" />
+                    <span className="text-gray-700">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Months 2-3 */}
+            <div className="bg-amber-50 rounded-lg p-4">
+              <h3 className="font-bold text-amber-900 mb-3 flex items-center gap-2">
+                <span className="bg-amber-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">4</span>
+                Months 2-3 - Growth
+              </h3>
+              <ul className="space-y-2 text-sm">
+                {newAmPlaybook.month2_3.map((item, i) => (
+                  <li key={i} className="flex gap-2">
+                    <input type="checkbox" className="mt-1 rounded border-amber-400" />
+                    <span className="text-gray-700">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Success Metrics */}
+          <div className="p-6 border-t bg-gray-50">
+            <h3 className="font-semibold text-gray-900 mb-4">🎯 90-Day Success Metrics</h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+              <div className="bg-white rounded-lg p-4 border">
+                <div className="text-2xl font-bold text-emerald-600">$183K</div>
+                <div className="text-sm text-gray-600">Stage 4 Closed</div>
+              </div>
+              <div className="bg-white rounded-lg p-4 border">
+                <div className="text-2xl font-bold text-blue-600">4+</div>
+                <div className="text-sm text-gray-600">Dormant Re-engaged</div>
+              </div>
+              <div className="bg-white rounded-lg p-4 border">
+                <div className="text-2xl font-bold text-purple-600">50%</div>
+                <div className="text-sm text-gray-600">Stage 1 Qualified</div>
+              </div>
+              <div className="bg-white rounded-lg p-4 border">
+                <div className="text-2xl font-bold text-amber-600">$2M+</div>
+                <div className="text-sm text-gray-600">New Pipeline Added</div>
               </div>
             </div>
           </div>
