@@ -449,7 +449,42 @@ export default function ScottTransitionPage() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 py-8">
-        {/* Executive Summary */}
+        {/* CRO Assessment Banner */}
+      <div className="bg-gradient-to-r from-blue-900 to-blue-800 rounded-xl shadow-lg mb-8 p-6 text-white">
+        <div className="flex items-start justify-between">
+          <div>
+            <div className="text-sm text-blue-200 uppercase tracking-wider mb-1">CRO Assessment</div>
+            <h2 className="text-2xl font-bold mb-2">Resignation Impact: LOW-TO-MODERATE CONCERN</h2>
+            <p className="text-blue-100 max-w-2xl">
+              Scott carries the smallest active book on the sales team (10th of 13 AMs). 
+              His departure removes less than 4% of total team pipeline. Primary risk is $6.3M in dormant accounts.
+            </p>
+          </div>
+          <a 
+            href="/memos/cro-memo-scott-pallardy.md" 
+            target="_blank"
+            className="bg-white text-blue-900 px-4 py-2 rounded-lg font-semibold hover:bg-blue-50 transition text-sm flex items-center gap-2"
+          >
+            📄 View Full Memo
+          </a>
+        </div>
+        <div className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-blue-700">
+          <div className="text-center">
+            <div className="text-3xl font-bold">$283K</div>
+            <div className="text-blue-200 text-sm">Active Pipeline at Risk</div>
+          </div>
+          <div className="text-center">
+            <div className="text-3xl font-bold text-yellow-300">$6.3M</div>
+            <div className="text-blue-200 text-sm">Dormant Account Exposure</div>
+          </div>
+          <div className="text-center">
+            <div className="text-3xl font-bold text-green-300">4%</div>
+            <div className="text-blue-200 text-sm">of Team Pipeline</div>
+          </div>
+        </div>
+      </div>
+
+      {/* Executive Summary */}
         <div className="bg-white rounded-xl shadow-sm border mb-8 overflow-hidden">
           <div className="bg-red-50 p-6 border-b border-red-100">
             <h2 className="text-xl font-bold text-red-900 flex items-center gap-2">
