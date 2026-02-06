@@ -15,22 +15,25 @@ export function formatCurrency(amount: number): string {
   return `$${amount.toFixed(0)}`
 }
 
-export function formatDate(date: Date): string {
-  return date.toLocaleDateString('en-US', { 
+export function formatDate(date: Date | string): string {
+  const d = typeof date === 'string' ? new Date(date) : date
+  return d.toLocaleDateString('en-US', { 
     month: 'short', 
     day: 'numeric', 
     year: 'numeric' 
   })
 }
 
-export function daysUntil(date: Date): number {
+export function daysUntil(date: Date | string): number {
+  const d = typeof date === 'string' ? new Date(date) : date
   const now = new Date()
-  const diff = date.getTime() - now.getTime()
+  const diff = d.getTime() - now.getTime()
   return Math.ceil(diff / (1000 * 60 * 60 * 24))
 }
 
-export function daysSince(date: Date): number {
+export function daysSince(date: Date | string): number {
+  const d = typeof date === 'string' ? new Date(date) : date
   const now = new Date()
-  const diff = now.getTime() - date.getTime()
+  const diff = now.getTime() - d.getTime()
   return Math.floor(diff / (1000 * 60 * 60 * 24))
 }

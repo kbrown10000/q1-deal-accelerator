@@ -42,7 +42,7 @@ export default function ActionsPage() {
     return true
   }).sort((a, b) => {
     // Sort by due date
-    return a.dueDate.getTime() - b.dueDate.getTime()
+    return new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime()
   })
 
   const stats = {
@@ -157,7 +157,7 @@ export default function ActionsPage() {
               {filteredActions.map((action) => {
                 const deal = getDealById(action.dealId)
                 const isOverdue = action.status !== 'completed' && 
-                  action.dueDate < new Date()
+                  new Date(action.dueDate) < new Date()
                 
                 return (
                   <tr 
@@ -166,7 +166,7 @@ export default function ActionsPage() {
                   >
                     <td className="p-3">
                       <span className={isOverdue ? 'text-red-600' : ''}>
-                        {action.description}
+                        {action.action}
                       </span>
                       {isOverdue && (
                         <Badge variant="destructive" className="ml-2 text-xs">

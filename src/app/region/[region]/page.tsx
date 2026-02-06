@@ -80,9 +80,9 @@ export default function RegionPage({ params }: PageProps) {
           icon={Users}
         />
         <MetricCard
-          title="Avg Days to Close"
-          value={metrics.avgDaysToClose}
-          subtitle="days remaining"
+          title="Avg Days Open"
+          value={Math.round(metrics.avgDaysOpen)}
+          subtitle="days in pipeline"
           icon={Clock}
         />
       </div>

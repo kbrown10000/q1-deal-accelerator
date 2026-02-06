@@ -31,14 +31,14 @@ export default function Dashboard() {
       <div className="grid gap-4 md:grid-cols-4">
         <MetricCard
           title="Total Pipeline"
-          value={formatCurrency(summary.totalPipeline)}
-          subtitle={`${summary.dealCount} opportunities`}
+          value={formatCurrency(summary.totalAmount)}
+          subtitle={`${summary.totalDeals} opportunities`}
           icon={DollarSign}
         />
         <MetricCard
           title="Total EGP"
           value={formatCurrency(summary.totalEgp)}
-          subtitle={`${((summary.totalEgp / summary.totalPipeline) * 100).toFixed(0)}% of pipeline`}
+          subtitle={`${((summary.totalEgp / summary.totalAmount) * 100).toFixed(0)}% of pipeline`}
           icon={TrendingUp}
         />
         <MetricCard

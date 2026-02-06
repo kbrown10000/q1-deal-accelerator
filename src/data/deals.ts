@@ -519,7 +519,7 @@ export function getRegionMetrics(region: Region) {
   const regionDeals = getDealsByRegion(region);
   return {
     dealCount: regionDeals.length,
-    totalAmount: regionDeals.reduce((sum, d) => sum + d.amount, 0),
+    totalPipeline: regionDeals.reduce((sum, d) => sum + d.amount, 0),
     totalEgp: regionDeals.reduce((sum, d) => sum + d.egp, 0),
     avgDealSize: regionDeals.length > 0 
       ? regionDeals.reduce((sum, d) => sum + d.amount, 0) / regionDeals.length 
@@ -527,6 +527,8 @@ export function getRegionMetrics(region: Region) {
     avgDaysOpen: regionDeals.length > 0
       ? regionDeals.reduce((sum, d) => sum + (d.daysOpen || 0), 0) / regionDeals.length
       : 0,
+    reviewed: regionDeals.filter(d => d.reviewed).length,
+    pending: regionDeals.filter(d => !d.reviewed).length,
     byStage: {
       stage1: regionDeals.filter(d => d.stage === 1).length,
       stage2: regionDeals.filter(d => d.stage === 2).length,
@@ -557,15 +559,29 @@ export const pipelineSummary = {
   totalDeals: deals.length,
   totalAmount: deals.reduce((sum, d) => sum + d.amount, 0),
   totalEgp: deals.reduce((sum, d) => sum + d.egp, 0),
+  reviewed: deals.filter(d => d.reviewed).length,
+  pending: deals.filter(d => !d.reviewed).length,
   byStage: {
-    stage1: deals.filter(d => d.stage === 1).length,
-    stage2: deals.filter(d => d.stage === 2).length,
-    stage3: deals.filter(d => d.stage === 3).length,
+    stage1: deals.filter(d => d.stage === 1),
+    stage2: deals.filter(d => d.stage === 2),
+    stage3: deals.filter(d => d.stage === 3),
   },
   byRegion: {
-    west: deals.filter(d => d.region === 'west').length,
-    east: deals.filter(d => d.region === 'east').length,
-    europe: deals.filter(d => d.region === 'europe').length,
+    west: {
+      totalPipeline: deals.filter(d => d.region === 'west').reduce((sum, d) => sum + d.amount, 0),
+      totalEgp: deals.filter(d => d.region === 'west').reduce((sum, d) => sum + d.egp, 0),
+      dealCount: deals.filter(d => d.region === 'west').length,
+    },
+    east: {
+      totalPipeline: deals.filter(d => d.region === 'east').reduce((sum, d) => sum + d.amount, 0),
+      totalEgp: deals.filter(d => d.region === 'east').reduce((sum, d) => sum + d.egp, 0),
+      dealCount: deals.filter(d => d.region === 'east').length,
+    },
+    europe: {
+      totalPipeline: deals.filter(d => d.region === 'europe').reduce((sum, d) => sum + d.amount, 0),
+      totalEgp: deals.filter(d => d.region === 'europe').reduce((sum, d) => sum + d.egp, 0),
+      dealCount: deals.filter(d => d.region === 'europe').length,
+    },
   },
   commitDeals: deals.filter(d => d.forecastCategory === 'Commit'),
   staleDeals: deals.filter(d => (d.daysOpen || 0) > 200),

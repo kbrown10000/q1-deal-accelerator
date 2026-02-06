@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { Deal, ActionItem } from "@/data/deals"
+import { Deal, Action } from "@/data/deals"
 import { formatCurrency, formatDate } from "@/lib/utils"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -23,7 +23,7 @@ import {
 
 interface DealClientProps {
   deal: Deal
-  actions: ActionItem[]
+  actions: Action[]
 }
 
 function getStageBadge(stage: number) {
@@ -39,9 +39,20 @@ function getStageBadge(stage: number) {
   }
 }
 
+const defaultMeddpicc = [
+  { id: 'metrics', label: 'Metrics', question: 'Do we understand their success metrics?', checked: false, notes: '' },
+  { id: 'economic-buyer', label: 'Economic Buyer', question: 'Have we identified the decision maker?', checked: false, notes: '' },
+  { id: 'decision-criteria', label: 'Decision Criteria', question: 'Do we know how they will decide?', checked: false, notes: '' },
+  { id: 'decision-process', label: 'Decision Process', question: 'Do we know the timeline and steps?', checked: false, notes: '' },
+  { id: 'paper-process', label: 'Paper Process', question: 'Do we understand procurement?', checked: false, notes: '' },
+  { id: 'identified-pain', label: 'Identified Pain', question: 'Is there a compelling event?', checked: false, notes: '' },
+  { id: 'champion', label: 'Champion', question: 'Do we have an internal advocate?', checked: false, notes: '' },
+  { id: 'competition', label: 'Competition', question: 'Do we know who else they are talking to?', checked: false, notes: '' },
+]
+
 export function DealClient({ deal, actions }: DealClientProps) {
-  const [meddpicc, setMeddpicc] = useState(deal.meddpicc)
-  const [notes, setNotes] = useState(deal.notes)
+  const [meddpicc, setMeddpicc] = useState(defaultMeddpicc)
+  const [notes, setNotes] = useState('')
 
   const completedItems = meddpicc.filter(item => item.checked).length
   const qualificationScore = Math.round((completedItems / meddpicc.length) * 100)
@@ -211,7 +222,7 @@ export function DealClient({ deal, actions }: DealClientProps) {
                             : 'text-muted-foreground'
                       }>•</span>
                       <div>
-                        <p>{action.description}</p>
+                        <p>{action.action}</p>
                         <p className="text-xs text-muted-foreground">
                           {action.owner} • Due {formatDate(action.dueDate)}
                         </p>
