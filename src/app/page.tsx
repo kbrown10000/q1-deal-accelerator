@@ -5,10 +5,14 @@ import { DealTable } from "@/components/deals/deal-table"
 import { ProgressTracker } from "@/components/deals/progress-tracker"
 import { StageBreakdown } from "@/components/deals/stage-breakdown"
 import { RegionBreakdown } from "@/components/deals/region-breakdown"
+import Link from "next/link"
 import { 
   DollarSign, 
   TrendingUp, 
-  AlertTriangle
+  AlertTriangle,
+  Users,
+  Building2,
+  MapPin
 } from "lucide-react"
 
 export default function Dashboard() {
@@ -32,6 +36,45 @@ export default function Dashboard() {
             Full pipeline • {summary.dealCount} opportunities • Priority: Stage 4 → Stage 3 → Stage 2 → Stage 1
           </p>
         </div>
+      </div>
+
+      {/* Quick Navigation */}
+      <div className="flex gap-3 flex-wrap">
+        <Link 
+          href="/owners" 
+          className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg font-medium transition-colors"
+        >
+          <Users className="w-4 h-4" />
+          By Owner
+        </Link>
+        <Link 
+          href="/accounts" 
+          className="inline-flex items-center gap-2 px-4 py-2 bg-green-50 hover:bg-green-100 text-green-700 rounded-lg font-medium transition-colors"
+        >
+          <Building2 className="w-4 h-4" />
+          By Account
+        </Link>
+        <Link 
+          href="/region/west" 
+          className="inline-flex items-center gap-2 px-4 py-2 bg-purple-50 hover:bg-purple-100 text-purple-700 rounded-lg font-medium transition-colors"
+        >
+          <MapPin className="w-4 h-4" />
+          West Region
+        </Link>
+        <Link 
+          href="/region/east" 
+          className="inline-flex items-center gap-2 px-4 py-2 bg-orange-50 hover:bg-orange-100 text-orange-700 rounded-lg font-medium transition-colors"
+        >
+          <MapPin className="w-4 h-4" />
+          East Region
+        </Link>
+        <Link 
+          href="/region/europe" 
+          className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded-lg font-medium transition-colors"
+        >
+          <MapPin className="w-4 h-4" />
+          Europe
+        </Link>
       </div>
 
       {/* Summary Cards */}
