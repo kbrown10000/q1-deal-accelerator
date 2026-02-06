@@ -7,8 +7,8 @@ import { DealTable } from "@/components/deals/deal-table"
 import { 
   DollarSign, 
   TrendingUp, 
-  Users, 
-  Clock,
+  Target,
+  CheckCircle,
   ArrowLeft
 } from "lucide-react"
 
@@ -43,6 +43,11 @@ export default function RegionPage({ params }: PageProps) {
     return b.amount - a.amount
   })
 
+  const avgDealSize = metrics.dealCount > 0 ? metrics.totalPipeline / metrics.dealCount : 0
+  const marginPercent = metrics.totalPipeline > 0 
+    ? ((metrics.totalEGP / metrics.totalPipeline) * 100).toFixed(0) 
+    : '0'
+
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -56,7 +61,7 @@ export default function RegionPage({ params }: PageProps) {
         </Link>
         <h1 className="text-3xl font-bold">{regionName} Region</h1>
         <p className="text-muted-foreground">
-          Q1 2026 pipeline for {regionName} region
+          Q1 2026 pipeline for {regionName} region • {metrics.dealCount} opportunities
         </p>
       </div>
 
@@ -70,35 +75,48 @@ export default function RegionPage({ params }: PageProps) {
         />
         <MetricCard
           title="Total EGP"
-          value={formatCurrency(metrics.totalEgp)}
-          subtitle={`${((metrics.totalEgp / metrics.totalPipeline) * 100).toFixed(0)}% margin`}
+          value={formatCurrency(metrics.totalEGP)}
+          subtitle={`${marginPercent}% margin`}
           icon={TrendingUp}
         />
         <MetricCard
-          title="Avg Deal Size"
-          value={formatCurrency(metrics.avgDealSize)}
-          icon={Users}
+          title="Stage 4 (Commit)"
+          value={metrics.stage4Count}
+          subtitle="Ready to close"
+          icon={Target}
         />
         <MetricCard
-          title="Avg Days Open"
-          value={Math.round(metrics.avgDaysOpen)}
-          subtitle="days in pipeline"
-          icon={Clock}
+          title="Avg Deal Size"
+          value={formatCurrency(avgDealSize)}
+          subtitle={`${metrics.stage3Count} in Stage 3`}
+          icon={CheckCircle}
         />
       </div>
 
-      {/* Review Progress */}
+      {/* Stage breakdown */}
       <div className="flex items-center gap-4 p-4 rounded-lg bg-muted/50">
-        <div className="text-sm">
-          <span className="text-green-600 font-medium">{metrics.reviewed} reviewed</span>
-          <span className="text-muted-foreground mx-2">•</span>
-          <span className="text-muted-foreground">{metrics.pending} pending review</span>
+        <div className="text-sm flex gap-6">
+          <span>
+            <strong className="text-red-600">{metrics.stage4Count}</strong> Stage 4
+          </span>
+          <span>
+            <strong>{metrics.stage3Count}</strong> Stage 3
+          </span>
+          <span>
+            <strong>{metrics.stage2Count}</strong> Stage 2
+          </span>
+          <span>
+            <strong>{metrics.stage1Count}</strong> Stage 1
+          </span>
+          <span className="text-muted-foreground">•</span>
+          <span className="text-green-600">{metrics.reviewedCount} reviewed</span>
+          <span className="text-muted-foreground">{metrics.pendingCount} pending</span>
         </div>
       </div>
 
       {/* Deals Table */}
       <div>
-        <h2 className="text-xl font-semibold mb-4">{regionName} Deals</h2>
+        <h2 className="text-xl font-semibold mb-4">{regionName} Deals ({sortedDeals.length})</h2>
         <DealTable deals={sortedDeals} showRegion={false} />
       </div>
     </div>
