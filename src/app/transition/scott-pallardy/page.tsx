@@ -178,45 +178,47 @@ const neglectedAccounts = [
   },
 ];
 
-// Scott's Performance vs Peers (from Sales MCP - Feb 2026)
+// Scott's Performance vs Peers (from full pipeline - Feb 2026)
+// NOTE: get_team_performance MCP tool is BROKEN - only shows deals closing in current period
+// These numbers come from the full deals.ts dataset (520 deals, $55.3M total pipeline)
 const peerComparison = {
   scott: {
     name: 'Scott Pallardy',
-    totalOpps: 7,
-    totalAmount: 373350,
-    totalEGP: 229378,
-    openDeals: 6,
-    pipeline: 283350,
-    pipelineEGP: 188878,
-    closedWon: 90000, // total - pipeline
-    rank: 10,
-    totalPeers: 13,
-    margin: 61, // EGP/Amount %
+    totalOpps: 86,
+    totalAmount: 10561000,
+    totalEGP: 3912000,
+    openDeals: 86,
+    pipeline: 10561000,
+    pipelineEGP: 3912000,
+    closedWon: 0,
+    rank: 1, // #1 in pipeline!
+    totalPeers: 15,
+    margin: 37, // EGP/Amount %
   },
   peers: [
-    { name: 'Avani Macwan', totalOpps: 23, totalAmount: 1942183, pipeline: 737995, rank: 1, region: 'East' },
-    { name: 'Mike Campbell', totalOpps: 24, totalAmount: 1893948, pipeline: 1566618, rank: 2, region: 'West' },
-    { name: 'Lisa Burgese Fry', totalOpps: 15, totalAmount: 1282659, pipeline: 1082659, rank: 3, region: 'East' },
-    { name: 'Josh Ertmer', totalOpps: 10, totalAmount: 1215601, pipeline: 965601, rank: 4, region: 'East' },
-    { name: 'Sherry De Luca', totalOpps: 11, totalAmount: 980000, pipeline: 650000, rank: 5, region: 'East' },
-    { name: 'Jim Macdonell', totalOpps: 11, totalAmount: 779392, pipeline: 639500, rank: 7, region: 'East' },
-    { name: 'Marcus Dinan', totalOpps: 9, totalAmount: 684405, pipeline: 77805, rank: 8, region: 'Europe' },
-    { name: 'Justin Ott', totalOpps: 11, totalAmount: 556550, pipeline: 356550, rank: 9, region: 'West' },
+    { name: 'Scott Pallardy', totalOpps: 86, totalAmount: 10561000, pipeline: 10561000, egp: 3912000, rank: 1, region: 'East' },
+    { name: 'Lisa Burgese Fry', totalOpps: 74, totalAmount: 8869000, pipeline: 8869000, egp: 2401000, rank: 2, region: 'East' },
+    { name: 'Avani Macwan', totalOpps: 49, totalAmount: 7138000, pipeline: 7138000, egp: 2579000, rank: 3, region: 'East' },
+    { name: 'Mike Campbell', totalOpps: 71, totalAmount: 5374000, pipeline: 5374000, egp: 1090000, rank: 4, region: 'West' },
+    { name: 'Justin Ott', totalOpps: 59, totalAmount: 4802000, pipeline: 4802000, egp: 826000, rank: 5, region: 'West' },
+    { name: 'Marcus Dinan', totalOpps: 47, totalAmount: 4704000, pipeline: 4704000, egp: 1593000, rank: 6, region: 'Europe' },
+    { name: 'Jim Macdonell', totalOpps: 29, totalAmount: 2798000, pipeline: 2798000, egp: 1162000, rank: 7, region: 'East' },
+    { name: 'Kim Guihen', totalOpps: 17, totalAmount: 2285000, pipeline: 2285000, egp: 1028000, rank: 8, region: 'Alliances' },
   ],
   companyTotals: {
-    totalOwners: 13,
-    totalOpps: 128,
-    totalAmount: 11371089,
-    avgAmountPerOwner: 874699,
-    totalPipeline: 7123079,
-    avgPipelinePerOwner: 548006,
+    totalOwners: 15,
+    totalOpps: 520,
+    totalAmount: 55300000,
+    avgAmountPerOwner: 3686667,
+    totalPipeline: 55300000,
+    avgPipelinePerOwner: 3686667,
   },
   insights: [
-    'Scott ranks 10th of 13 active AMs by total opportunity value',
-    'Lowest opportunity count (7) among active sales team',
-    'HIGH margin seller - 61% EGP vs ~40% company average',
-    'Pipeline ($283K) is 48% below peer average ($548K)',
-    'Strength: Quality over quantity - smaller book, higher margins',
+    '🚨 Scott is #1 in pipeline with $10.56M - highest on the team!',
+    'Owns 86 deals (17% of company pipeline by count)',
+    'Represents 19% of total company pipeline by value',
+    '37% EGP margin - $3.91M in estimated gross profit at risk',
+    'CRITICAL: Largest book leaving the company - transition is urgent',
   ],
 };
 
