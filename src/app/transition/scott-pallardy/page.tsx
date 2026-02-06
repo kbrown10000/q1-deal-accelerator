@@ -52,6 +52,40 @@ const dormantAccounts = [
   { name: 'Santen Incorporated', revenue2024: 352000 },
 ];
 
+// Scott Pallardy Comprehensive Profile
+const scottProfile = {
+  gongStats: {
+    totalCalls: 73,
+    dateRange: 'Aug 2025 - Jan 2026',
+    peakWeek: '11/30/2025 (6 calls)',
+    avgDuration: '20 min',
+  },
+  sellingStrengths: [
+    'Technical depth - comfortable with complex systems (Codebeamer, Veeva, SAP)',
+    'Consultative approach - focuses on lightweight assessments before big commitments',
+    'Team selling - brings specialists (Rathina, John, Jim) into calls',
+    'AI/Governance expertise - multiple AI governance conversations',
+    'Partner relationships - works well with PTC, integrates into partner deals'
+  ],
+  handoffConcerns: [
+    'Long sales cycles - 80% of deals aging 90+ days',
+    'Follow-up gaps - dormant accounts suggest relationship maintenance needed',
+    'Pipeline hygiene - many Stage 1 deals may need qualification review'
+  ],
+  topServices: ['AI Governance & Training', 'Validation & Compliance', 'Managed Services (Veeva)', 'UDI/MDR Compliance'],
+  internalTeam: [
+    { name: 'Rathina G.', role: 'Technical Lead', involvement: 'High' },
+    { name: 'John', role: 'Solutions Architect', involvement: 'High' },
+    { name: 'Jim Macdonell', role: 'Senior AM', involvement: 'Medium' },
+    { name: 'Hovsep Kirikian', role: 'CGO', involvement: 'Medium' },
+  ],
+  externalContacts: [
+    { name: 'Dallis', account: 'Arthrex', note: 'Going on parental leave - get AI list first' },
+    { name: 'Ryan', account: 'Enable Injections', note: 'Training Jan 29 - URGENT' },
+    { name: 'Mike', account: 'PTC/Zimmer', note: 'Codebeamer expert, partner' },
+  ],
+};
+
 // Recommended assignees based on East region reps
 const recommendedAssignees = [
   { name: 'Lisa Burgese Fry', strength: 'Enterprise accounts, MedTech' },
@@ -279,6 +313,105 @@ export default function ScottTransitionPage() {
               >
                 View all 73 calls in Gong →
               </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Scott Pallardy Profile - Selling Style & Relationships */}
+        <div className="bg-white rounded-xl shadow-sm border mb-8">
+          <div className="p-6 border-b bg-indigo-50">
+            <h2 className="text-xl font-semibold text-indigo-900 flex items-center gap-2">
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+              Scott Pallardy - Seller Profile Analysis
+            </h2>
+            <p className="text-sm text-indigo-700 mt-1">Selling style, strengths, and relationship map for seamless handoff</p>
+          </div>
+          <div className="p-6 grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Gong Stats */}
+            <div className="bg-indigo-50 rounded-lg p-4">
+              <h3 className="font-semibold text-indigo-900 mb-3">📊 Gong Activity Summary</h3>
+              <div className="grid grid-cols-2 gap-3 text-sm">
+                <div><span className="text-gray-600">Total Calls:</span> <strong>{scottProfile.gongStats.totalCalls}</strong></div>
+                <div><span className="text-gray-600">Period:</span> <strong>{scottProfile.gongStats.dateRange}</strong></div>
+                <div><span className="text-gray-600">Peak Week:</span> <strong>{scottProfile.gongStats.peakWeek}</strong></div>
+                <div><span className="text-gray-600">Avg Duration:</span> <strong>{scottProfile.gongStats.avgDuration}</strong></div>
+              </div>
+            </div>
+
+            {/* Top Services */}
+            <div className="bg-green-50 rounded-lg p-4">
+              <h3 className="font-semibold text-green-900 mb-3">🎯 Primary Service Areas</h3>
+              <div className="flex flex-wrap gap-2">
+                {scottProfile.topServices.map((service, i) => (
+                  <span key={i} className="bg-green-200 text-green-800 px-3 py-1 rounded-full text-sm">{service}</span>
+                ))}
+              </div>
+            </div>
+
+            {/* Strengths */}
+            <div className="bg-blue-50 rounded-lg p-4">
+              <h3 className="font-semibold text-blue-900 mb-3">💪 Selling Strengths</h3>
+              <ul className="space-y-2 text-sm">
+                {scottProfile.sellingStrengths.map((strength, i) => (
+                  <li key={i} className="flex gap-2">
+                    <span className="text-blue-500">✓</span>
+                    <span className="text-gray-700">{strength}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Handoff Concerns */}
+            <div className="bg-amber-50 rounded-lg p-4">
+              <h3 className="font-semibold text-amber-900 mb-3">⚠️ Handoff Considerations</h3>
+              <ul className="space-y-2 text-sm">
+                {scottProfile.handoffConcerns.map((concern, i) => (
+                  <li key={i} className="flex gap-2">
+                    <span className="text-amber-500">!</span>
+                    <span className="text-gray-700">{concern}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Relationship Map */}
+          <div className="p-6 border-t">
+            <h3 className="font-semibold text-gray-900 mb-4">🤝 Key Relationships</h3>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Internal Team */}
+              <div>
+                <h4 className="text-sm font-medium text-gray-600 mb-2">USDM Team (involve in handoff calls)</h4>
+                <div className="space-y-2">
+                  {scottProfile.internalTeam.map((person, i) => (
+                    <div key={i} className="flex items-center justify-between bg-gray-50 rounded px-3 py-2">
+                      <div>
+                        <span className="font-medium">{person.name}</span>
+                        <span className="text-gray-500 text-sm ml-2">{person.role}</span>
+                      </div>
+                      <span className={`text-xs px-2 py-1 rounded ${
+                        person.involvement === 'High' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'
+                      }`}>{person.involvement}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* External Contacts */}
+              <div>
+                <h4 className="text-sm font-medium text-gray-600 mb-2">Key Customer Contacts (critical for transition)</h4>
+                <div className="space-y-2">
+                  {scottProfile.externalContacts.map((contact, i) => (
+                    <div key={i} className="bg-gray-50 rounded px-3 py-2">
+                      <div className="flex justify-between">
+                        <span className="font-medium">{contact.name}</span>
+                        <span className="text-sm text-indigo-600">{contact.account}</span>
+                      </div>
+                      <p className="text-xs text-gray-500 mt-1">{contact.note}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
