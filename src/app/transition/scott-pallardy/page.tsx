@@ -460,13 +460,21 @@ export default function ScottTransitionPage() {
               His departure removes less than 4% of total team pipeline. Primary risk is $6.3M in dormant accounts.
             </p>
           </div>
-          <a 
-            href="/memos/cro-memo-scott-pallardy.md" 
-            target="_blank"
-            className="bg-white text-blue-900 px-4 py-2 rounded-lg font-semibold hover:bg-blue-50 transition text-sm flex items-center gap-2"
-          >
-            📄 View Full Memo
-          </a>
+          <div className="flex gap-2">
+            <a 
+              href="/transition/scott-pallardy/map" 
+              className="bg-white text-blue-900 px-4 py-2 rounded-lg font-semibold hover:bg-blue-50 transition text-sm flex items-center gap-2"
+            >
+              🗺️ Account Map
+            </a>
+            <a 
+              href="/memos/cro-memo-scott-pallardy.md" 
+              target="_blank"
+              className="bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-600 transition text-sm flex items-center gap-2"
+            >
+              📄 CRO Memo
+            </a>
+          </div>
         </div>
         <div className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-blue-700">
           <div className="text-center">
