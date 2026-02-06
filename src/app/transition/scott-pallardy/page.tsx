@@ -178,6 +178,120 @@ const neglectedAccounts = [
   },
 ];
 
+// Relationship Risk Matrix - Extracted from Gong
+const relationshipRisk = [
+  {
+    account: 'Arthrex',
+    contact: 'Dallis',
+    role: 'Primary Decision Maker',
+    callCount: 3,
+    lastCall: 'Jan 16, 2026',
+    relationship: 'Strong - Active proposal',
+    risk: 'HIGH',
+    riskReason: 'Going on parental leave - window closing',
+    action: 'Get AI solutions list BEFORE leave starts'
+  },
+  {
+    account: 'Enable Injections',
+    contact: 'Ryan',
+    role: 'Project Lead',
+    callCount: 2,
+    lastCall: 'Jan 8, 2026',
+    relationship: 'Developing',
+    risk: 'CRITICAL',
+    riskReason: 'Deal LOST - training date Jan 29 passed',
+    action: 'Rescue attempt - may still salvage relationship'
+  },
+  {
+    account: 'BioAgilytix Labs',
+    contact: 'Teresa Neal',
+    role: 'QA/Operations',
+    callCount: 4,
+    lastCall: 'Jan 12, 2026',
+    relationship: 'Strong - Stage 4',
+    risk: 'MEDIUM',
+    riskReason: 'Stage 4 closing Feb 28 - needs continuity',
+    action: 'Warm intro from Scott before departure'
+  },
+  {
+    account: 'Zimmer Biomet',
+    contact: 'Mayank Mahajan',
+    role: 'Technical Contact',
+    callCount: 2,
+    lastCall: 'Jan 8, 2026',
+    relationship: 'Partner-driven (PTC)',
+    risk: 'LOW',
+    riskReason: 'PTC partnership provides coverage',
+    action: 'Coordinate with Mike (PTC) for continuity'
+  },
+  {
+    account: 'Bicara Therapeutics',
+    contact: 'David',
+    role: 'Implementation Lead',
+    callCount: 2,
+    lastCall: 'Jan 13, 2026',
+    relationship: 'New - ZenQMS project',
+    risk: 'MEDIUM',
+    riskReason: 'New relationship, implementation starting',
+    action: 'Schedule intro call with new AM'
+  },
+  {
+    account: 'CellCarta',
+    contact: 'Unknown',
+    role: 'QMS/AI Team',
+    callCount: 1,
+    lastCall: 'Jan 12, 2026',
+    relationship: 'Early stage',
+    risk: 'HIGH',
+    riskReason: 'Single-threaded, AI assessment opportunity',
+    action: 'Research contacts, schedule discovery'
+  },
+  {
+    account: 'Harmony Biosciences',
+    contact: 'Unknown',
+    role: 'Veeva Team',
+    callCount: 1,
+    lastCall: 'Jan 15, 2026',
+    relationship: 'Managed Services active',
+    risk: 'LOW',
+    riskReason: 'Delivery team (Anupreet) has relationship',
+    action: 'Internal handoff - delivery continuity'
+  },
+  {
+    account: 'Therakos/Mallinckrodt',
+    contact: 'Legal Team',
+    role: 'Contract/Legal',
+    callCount: 2,
+    lastCall: 'Jan 16, 2026',
+    relationship: 'MSA/SOW in progress',
+    risk: 'MEDIUM',
+    riskReason: 'Stage 4 - UDI work, legal coordination',
+    action: 'Jim Macdonell already involved - transfer lead'
+  },
+  {
+    account: 'Humacyte',
+    contact: 'Unknown',
+    role: 'Compliance Team',
+    callCount: 1,
+    lastCall: 'Jan 15, 2026',
+    relationship: 'Proposal stage',
+    risk: 'MEDIUM',
+    riskReason: '60-hour proposal pending approval',
+    action: 'Research contacts, follow up on proposal'
+  },
+  {
+    account: 'BioCryst Pharmaceuticals',
+    contact: 'Unknown',
+    role: 'DocuSign pending',
+    callCount: 0,
+    lastCall: 'N/A in Gong',
+    relationship: 'Stage 4 - closing',
+    risk: 'HIGH',
+    riskReason: 'DocuSign due Feb 13 - no recorded calls',
+    action: 'URGENT: Get contact info from Scott'
+  },
+];
+
 // New AM 90-Day Playbook
 const newAmPlaybook = {
   week1: [
@@ -798,6 +912,103 @@ export default function ScottTransitionPage() {
               <div className="text-lg font-semibold text-orange-900">
                 Total At-Risk Revenue: {formatCurrency(dormantAccounts.reduce((s, a) => s + a.revenue2024, 0))}
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Relationship Risk Matrix */}
+        <div className="bg-white rounded-xl shadow-sm border mb-8">
+          <div className="p-6 border-b bg-orange-50">
+            <h2 className="text-xl font-semibold text-orange-900 flex items-center gap-2">
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              🤝 Relationship Risk Matrix - Who Scott Knows
+            </h2>
+            <p className="text-sm text-orange-700 mt-1">Contact relationships extracted from 73 Gong calls - risk assessment for transition</p>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead className="bg-orange-100">
+                <tr>
+                  <th className="text-left py-3 px-4 font-semibold text-orange-900">Account</th>
+                  <th className="text-left py-3 px-4 font-semibold text-orange-900">Contact</th>
+                  <th className="text-left py-3 px-4 font-semibold text-orange-900">Role</th>
+                  <th className="text-center py-3 px-4 font-semibold text-orange-900">Calls</th>
+                  <th className="text-left py-3 px-4 font-semibold text-orange-900">Relationship</th>
+                  <th className="text-center py-3 px-4 font-semibold text-orange-900">Risk</th>
+                  <th className="text-left py-3 px-4 font-semibold text-orange-900">Transition Action</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y">
+                {relationshipRisk.map((rel, idx) => (
+                  <tr key={idx} className={`hover:bg-orange-50 ${
+                    rel.risk === 'CRITICAL' ? 'bg-red-50' : 
+                    rel.risk === 'HIGH' ? 'bg-orange-50' : ''
+                  }`}>
+                    <td className="py-3 px-4 font-medium text-gray-900">{rel.account}</td>
+                    <td className="py-3 px-4">
+                      <div className="font-medium text-indigo-700">{rel.contact}</div>
+                      <div className="text-xs text-gray-500">Last: {rel.lastCall}</div>
+                    </td>
+                    <td className="py-3 px-4 text-gray-600">{rel.role}</td>
+                    <td className="py-3 px-4 text-center">
+                      <span className={`inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold ${
+                        rel.callCount >= 3 ? 'bg-green-200 text-green-800' :
+                        rel.callCount >= 1 ? 'bg-yellow-200 text-yellow-800' :
+                        'bg-gray-200 text-gray-600'
+                      }`}>{rel.callCount}</span>
+                    </td>
+                    <td className="py-3 px-4 text-gray-700 text-xs">{rel.relationship}</td>
+                    <td className="py-3 px-4 text-center">
+                      <span className={`px-2 py-1 rounded text-xs font-bold ${
+                        rel.risk === 'CRITICAL' ? 'bg-red-600 text-white' :
+                        rel.risk === 'HIGH' ? 'bg-orange-500 text-white' :
+                        rel.risk === 'MEDIUM' ? 'bg-yellow-400 text-yellow-900' :
+                        'bg-green-200 text-green-800'
+                      }`}>{rel.risk}</span>
+                    </td>
+                    <td className="py-3 px-4 text-xs">
+                      <div className="text-gray-500 italic mb-1">{rel.riskReason}</div>
+                      <div className="text-indigo-700 font-medium">→ {rel.action}</div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          
+          {/* Risk Summary */}
+          <div className="p-6 border-t bg-orange-50">
+            <h3 className="font-semibold text-orange-900 mb-4">⚠️ Transition Risk Summary</h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="bg-red-100 rounded-lg p-4 text-center border-2 border-red-300">
+                <div className="text-3xl font-bold text-red-700">2</div>
+                <div className="text-sm text-red-600 font-medium">CRITICAL</div>
+                <div className="text-xs text-red-500 mt-1">Immediate action required</div>
+              </div>
+              <div className="bg-orange-100 rounded-lg p-4 text-center border-2 border-orange-300">
+                <div className="text-3xl font-bold text-orange-700">3</div>
+                <div className="text-sm text-orange-600 font-medium">HIGH RISK</div>
+                <div className="text-xs text-orange-500 mt-1">Warm intro needed</div>
+              </div>
+              <div className="bg-yellow-100 rounded-lg p-4 text-center border-2 border-yellow-300">
+                <div className="text-3xl font-bold text-yellow-700">4</div>
+                <div className="text-sm text-yellow-600 font-medium">MEDIUM</div>
+                <div className="text-xs text-yellow-500 mt-1">Plan transition</div>
+              </div>
+              <div className="bg-green-100 rounded-lg p-4 text-center border-2 border-green-300">
+                <div className="text-3xl font-bold text-green-700">2</div>
+                <div className="text-sm text-green-600 font-medium">LOW RISK</div>
+                <div className="text-xs text-green-500 mt-1">Self-managing</div>
+              </div>
+            </div>
+            <div className="mt-4 p-4 bg-red-100 rounded-lg border border-red-300">
+              <p className="text-red-800 font-semibold">🚨 CRITICAL ACTIONS BEFORE SCOTT LEAVES:</p>
+              <ul className="text-sm text-red-700 mt-2 space-y-1">
+                <li>1. Get Dallis (Arthrex) AI solutions list - before parental leave</li>
+                <li>2. Get BioCryst contact info - DocuSign closing Feb 13 with NO recorded calls</li>
+                <li>3. Attempt Enable Injections rescue call with Ryan</li>
+                <li>4. Get CellCarta contact names - single-threaded AI opportunity</li>
+              </ul>
             </div>
           </div>
         </div>
