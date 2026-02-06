@@ -535,6 +535,23 @@ export function getRegionMetrics(region: Region) {
   };
 }
 
+export function getActionsByDeal(dealId: string): Action[] {
+  return actions.filter(a => a.dealId === dealId);
+}
+
+export function getPipelineSummary() {
+  return pipelineSummary;
+}
+
+export function getSortedDeals(): Deal[] {
+  return [...deals].sort((a, b) => {
+    // Sort by stage descending (3 first, then 2, then 1)
+    if (b.stage !== a.stage) return b.stage - a.stage;
+    // Then by amount descending
+    return b.amount - a.amount;
+  });
+}
+
 // Summary stats
 export const pipelineSummary = {
   totalDeals: deals.length,
