@@ -60,6 +60,54 @@ const recommendedAssignees = [
   { name: 'Jim Macdonell', strength: 'Large deals, complex negotiations' },
 ];
 
+// Gong call insights (extracted from Gong search)
+const gongInsights = [
+  {
+    account: 'Arthrex',
+    callTitle: 'AI Readiness and Regulatory Strategy Discussion',
+    date: 'Jan 16, 2026',
+    duration: '18m',
+    participants: 'Scott, Rathina, John, Hovsep + Dallis (Arthrex)',
+    deal: '$56,520 Stage 2',
+    keyInsight: 'AI governance proposal. Project start July due to Dallis parental leave. Dallis will provide AI solutions list.',
+    actionItems: ['Prepare lightweight AI assessment proposal', 'Wait for AI solutions list from Arthrex'],
+    risk: 'medium'
+  },
+  {
+    account: 'Enable Injections',
+    callTitle: 'Kick-Off Meeting - AI Governance',
+    date: 'Jan 8, 2026',
+    duration: '21m',
+    participants: 'Scott, Aqeel, John + Ryan (Enable)',
+    deal: '$70,900 LOST - No Decision',
+    keyInsight: 'AI governance and training support project. Live training target Jan 29th.',
+    actionItems: ['Live training session Jan 29', 'Weekly calls scheduled', 'SAP Analytics Cloud validation inquiry'],
+    risk: 'high'
+  },
+  {
+    account: 'Zimmer Biomet',
+    callTitle: 'PTC Codebeamer alignment',
+    date: 'Jan 8, 2026',
+    duration: '34m',
+    participants: 'Scott, Jim, Joe + Mike (PTC)',
+    deal: '$35,000 Stage 3',
+    keyInsight: 'Codebeamer upgrade complexity, working sets feature, transition to Codebeamer Plus and Windchill Plus.',
+    actionItems: ['Validation and compliance expertise positioning'],
+    risk: 'low'
+  },
+  {
+    account: 'Therakos',
+    callTitle: 'USDM UDI Commercials',
+    date: 'Jan 16, 2026',
+    duration: '17m',
+    participants: 'Jim Macdonell + 4 more',
+    deal: 'Mallinckrodt Pharma related',
+    keyInsight: 'UDI commercials discussion',
+    actionItems: ['Follow up on UDI requirements'],
+    risk: 'medium'
+  }
+];
+
 export default function ScottTransitionPage() {
   return (
     <div className="min-h-screen bg-gray-50">
@@ -178,6 +226,59 @@ export default function ScottTransitionPage() {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Gong Call Insights */}
+        <div className="bg-white rounded-xl shadow-sm border mb-8">
+          <div className="p-6 border-b bg-purple-50">
+            <h2 className="text-xl font-semibold text-purple-900 flex items-center gap-2">
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              Gong Call Intelligence - 73 Total Calls
+            </h2>
+            <p className="text-sm text-purple-700 mt-1">Recent customer conversations with critical transition insights</p>
+          </div>
+          <div className="p-6 space-y-6">
+            {gongInsights.map((call, idx) => (
+              <div key={idx} className={`p-4 rounded-lg border-2 ${
+                call.risk === 'high' ? 'border-red-300 bg-red-50' : 
+                call.risk === 'medium' ? 'border-yellow-300 bg-yellow-50' : 'border-green-300 bg-green-50'
+              }`}>
+                <div className="flex justify-between items-start mb-2">
+                  <div>
+                    <h3 className="font-semibold text-gray-900">{call.account}</h3>
+                    <p className="text-sm text-gray-600">{call.callTitle}</p>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-sm font-medium">{call.date}</div>
+                    <div className="text-xs text-gray-500">{call.duration}</div>
+                  </div>
+                </div>
+                <div className="text-xs text-gray-500 mb-2">Participants: {call.participants}</div>
+                <div className="text-sm mb-2"><strong>Deal:</strong> {call.deal}</div>
+                <div className="bg-white p-3 rounded border mb-2">
+                  <div className="text-sm"><strong>💡 Key Insight:</strong> {call.keyInsight}</div>
+                </div>
+                <div className="text-sm">
+                  <strong>Action Items:</strong>
+                  <ul className="list-disc list-inside ml-2 mt-1">
+                    {call.actionItems.map((item, i) => (
+                      <li key={i} className="text-gray-700">{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+            <div className="text-center pt-4 border-t">
+              <a 
+                href="https://us-43678.app.gong.io/conversations?workspace-id=4064186953102049058&callSearch=%7B%22search%22%3A%7B%22type%22%3A%22And%22%2C%22filters%22%3A%5B%7B%22type%22%3A%22Participants%22%2C%22userIds%22%3A%5B%22scott%22%5D%7D%5D%7D%7D"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-purple-600 hover:text-purple-800 font-medium"
+              >
+                View all 73 calls in Gong →
+              </a>
             </div>
           </div>
         </div>
