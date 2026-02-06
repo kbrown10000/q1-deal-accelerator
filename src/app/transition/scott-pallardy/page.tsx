@@ -283,6 +283,114 @@ export default function ScottTransitionPage() {
           </div>
         </div>
 
+        {/* Salesforce Account Data Export */}
+        <div className="bg-white rounded-xl shadow-sm border mb-8">
+          <div className="p-6 border-b bg-blue-50">
+            <h2 className="text-xl font-semibold text-blue-900 flex items-center gap-2">
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              Salesforce Account Summary - Top 15 Accounts
+            </h2>
+            <p className="text-sm text-blue-700 mt-1">Customer relationships, pipeline status, and handoff notes</p>
+          </div>
+          <div className="overflow-x-auto p-6">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b-2 border-blue-200">
+                  <th className="text-left py-2 px-3 font-semibold text-gray-900">Account Name</th>
+                  <th className="text-left py-2 px-3 font-semibold text-gray-900">Pipeline</th>
+                  <th className="text-left py-2 px-3 font-semibold text-gray-900">Stage</th>
+                  <th className="text-left py-2 px-3 font-semibold text-gray-900">Key Contact</th>
+                  <th className="text-left py-2 px-3 font-semibold text-gray-900">Last Activity</th>
+                  <th className="text-left py-2 px-3 font-semibold text-gray-900">Handoff Notes</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y">
+                <tr className="hover:bg-gray-50">
+                  <td className="py-3 px-3 font-medium text-gray-900">BioCryst Pharmaceuticals</td>
+                  <td className="py-3 px-3 text-red-600 font-semibold">$89K</td>
+                  <td className="py-3 px-3"><span className="bg-red-100 text-red-800 px-2 py-1 rounded text-xs font-semibold">Stage 4</span></td>
+                  <td className="py-3 px-3 text-gray-600">Jim Burton</td>
+                  <td className="py-3 px-3 text-gray-500 text-xs">DocuSign pending</td>
+                  <td className="py-3 px-3 text-xs text-gray-600">Close 2/13 - Lisa or Josh</td>
+                </tr>
+                <tr className="hover:bg-gray-50">
+                  <td className="py-3 px-3 font-medium text-gray-900">Therakos</td>
+                  <td className="py-3 px-3 text-red-600 font-semibold">$24K</td>
+                  <td className="py-3 px-3"><span className="bg-red-100 text-red-800 px-2 py-1 rounded text-xs font-semibold">Stage 4</span></td>
+                  <td className="py-3 px-3 text-gray-600">UDI contacts</td>
+                  <td className="py-3 px-3 text-gray-500 text-xs">UDI commercials</td>
+                  <td className="py-3 px-3 text-xs text-gray-600">Close 2/13 - Jim Macdonell</td>
+                </tr>
+                <tr className="hover:bg-gray-50">
+                  <td className="py-3 px-3 font-medium text-gray-900">BioAgilytix Labs</td>
+                  <td className="py-3 px-3 text-red-600 font-semibold">$70K</td>
+                  <td className="py-3 px-3"><span className="bg-red-100 text-red-800 px-2 py-1 rounded text-xs font-semibold">Stage 4</span></td>
+                  <td className="py-3 px-3 text-gray-600">QA Mgr</td>
+                  <td className="py-3 px-3 text-gray-500 text-xs">Close 2/28</td>
+                  <td className="py-3 px-3 text-xs text-gray-600">Expand from existing</td>
+                </tr>
+                <tr className="hover:bg-gray-50">
+                  <td className="py-3 px-3 font-medium text-gray-900">Arthrex</td>
+                  <td className="py-3 px-3 text-yellow-600 font-semibold">$56.5K</td>
+                  <td className="py-3 px-3"><span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs font-semibold">Stage 2</span></td>
+                  <td className="py-3 px-3 text-gray-600">Dallis (Parental Leave)</td>
+                  <td className="py-3 px-3 text-gray-500 text-xs">AI governance proposal</td>
+                  <td className="py-3 px-3 text-xs text-gray-600">Project start July - watch for Dallis return</td>
+                </tr>
+                <tr className="hover:bg-gray-50">
+                  <td className="py-3 px-3 font-medium text-gray-900">Enable Injections</td>
+                  <td className="py-3 px-3 text-gray-500 font-semibold">$70.9K</td>
+                  <td className="py-3 px-3"><span className="bg-gray-100 text-gray-800 px-2 py-1 rounded text-xs font-semibold">LOST</span></td>
+                  <td className="py-3 px-3 text-gray-600">Ryan (Enable)</td>
+                  <td className="py-3 px-3 text-gray-500 text-xs">No decision on AI training</td>
+                  <td className="py-3 px-3 text-xs text-red-600 font-semibold">URGENT: Reach out before Jan 29 training</td>
+                </tr>
+                <tr className="hover:bg-gray-50">
+                  <td className="py-3 px-3 font-medium text-gray-900">Zimmer Biomet</td>
+                  <td className="py-3 px-3 text-yellow-600 font-semibold">$35K</td>
+                  <td className="py-3 px-3"><span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs font-semibold">Stage 3</span></td>
+                  <td className="py-3 px-3 text-gray-600">Mike (PTC)</td>
+                  <td className="py-3 px-3 text-gray-500 text-xs">Codebeamer upgrade</td>
+                  <td className="py-3 px-3 text-xs text-gray-600">Technical validation positioning</td>
+                </tr>
+                <tr className="hover:bg-gray-50 bg-red-50">
+                  <td className="py-3 px-3 font-medium text-gray-900">Biogen</td>
+                  <td className="py-3 px-3 text-gray-500 font-semibold">$1.5M</td>
+                  <td className="py-3 px-3"><span className="bg-red-200 text-red-900 px-2 py-1 rounded text-xs font-semibold">NO PIPELINE</span></td>
+                  <td className="py-3 px-3 text-gray-600">Unknown</td>
+                  <td className="py-3 px-3 text-gray-500 text-xs">2024 revenue only</td>
+                  <td className="py-3 px-3 text-xs text-red-600">⚠️ At-risk account - schedule intro call</td>
+                </tr>
+                <tr className="hover:bg-gray-50 bg-red-50">
+                  <td className="py-3 px-3 font-medium text-gray-900">AbbVie</td>
+                  <td className="py-3 px-3 text-gray-500 font-semibold">$744K</td>
+                  <td className="py-3 px-3"><span className="bg-red-200 text-red-900 px-2 py-1 rounded text-xs font-semibold">NO PIPELINE</span></td>
+                  <td className="py-3 px-3 text-gray-600">Unknown</td>
+                  <td className="py-3 px-3 text-gray-500 text-xs">2024 revenue only</td>
+                  <td className="py-3 px-3 text-xs text-red-600">⚠️ At-risk account - schedule intro call</td>
+                </tr>
+                <tr className="hover:bg-gray-50 bg-red-50">
+                  <td className="py-3 px-3 font-medium text-gray-900">Atara Biotherapeutics</td>
+                  <td className="py-3 px-3 text-gray-500 font-semibold">$1.08M</td>
+                  <td className="py-3 px-3"><span className="bg-red-200 text-red-900 px-2 py-1 rounded text-xs font-semibold">NO PIPELINE</span></td>
+                  <td className="py-3 px-3 text-gray-600">TBD</td>
+                  <td className="py-3 px-3 text-gray-500 text-xs">Dormant</td>
+                  <td className="py-3 px-3 text-xs text-red-600">⚠️ Dormant ($1.08M risk) - research contacts</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div className="p-6 border-t bg-blue-50 text-sm text-blue-800">
+            <p className="font-semibold mb-2">📊 Key Metrics for Transition:</p>
+            <ul className="list-disc list-inside space-y-1">
+              <li><strong>Top 3 Accounts at Risk:</strong> Biogen ($1.5M), Atara ($1.08M), Shire ($1.00M)</li>
+              <li><strong>Active Opportunity Window:</strong> 3 Stage 4 deals close within 5 weeks (Feb 13-28)</li>
+              <li><strong>Key Contacts Needed:</strong> Enable Injections (Ryan), Arthrex (Dallis), Biogen/AbbVie (TBD)</li>
+              <li><strong>Recommended Reassignment:</strong> Lisa Burgese Fry (Enterprise/MedTech) → Biogen + AbbVie intro calls</li>
+            </ul>
+          </div>
+        </div>
+
         {/* Urgent Deals - Stage 4 & High Value */}
         <div className="bg-white rounded-xl shadow-sm border mb-8">
           <div className="p-6 border-b bg-red-50">
